@@ -1,21 +1,50 @@
 "use client";
-
 import sidebarItems from "@/constants/SidebarItems";
-import SidebarItem from "../elements/SidebarItem";
-import { useReadLocalStorage } from "usehooks-ts";
+import generateIcon from "@/utils/generateIcon";
+import { ChevronLeft, ExpandMore } from "@mui/icons-material";
+import {
+  Box,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  MenuList,
+} from "@mui/material";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
-  const isSidebarOpened = useReadLocalStorage("isSidebarOpened");
+  const pathname = usePathname();
+
+  const ifPathnameIncludes = (basepath: string | undefined) => {
+    if (basepath === "/") {
+      return pathname === basepath;
+    }
+    return basepath && pathname.includes(basepath);
+  };
 
   return (
-    <ul
-      className={`dark bg-background text-primary h-screen shadow-2xl p-3 flex flex-col gap-2 ${
-        isSidebarOpened ? "w-64" : "w-12"
-      }`}
-    >
-      {sidebarItems.map((sidebarItem) => {
-        return <SidebarItem key={sidebarItem.id} item={sidebarItem} />;
-      })}
-    </ul>
+    <Box>
+      <MenuList>
+        {sidebarItems.map((item) => {
+          const Icon = item.icon && generateIcon(item.icon);
+          return (
+            <Link
+              key={item.id}
+              href={(item.children && item.children[0].href) || "/"}
+              passHref
+              legacyBehavior
+            >
+              <MenuItem selected={!!ifPathnameIncludes(item.basepath)}>
+                <ListItemIcon>{Icon ? <Icon /> : null}</ListItemIcon>
+                <ListItemText>{item.title}</ListItemText>
+                <ListItemIcon>
+                  <ExpandMore />
+                </ListItemIcon>
+              </MenuItem>
+            </Link>
+          );
+        })}
+      </MenuList>
+    </Box>
   );
 }

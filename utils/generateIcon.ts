@@ -1,11 +1,12 @@
-import { HomeIcon, LucideIcon, Package } from "lucide-react";
+import { AllInbox, Home } from "@mui/icons-material";
 
-function generateIcon(iconName: string): LucideIcon | undefined {
+
+function generateIcon(iconName: string) {
   switch (iconName) {
-    case "HomeIcon":
-      return HomeIcon;
+    case "Home":
+      return Home;
     case "Package":
-      return Package
+      return AllInbox
   }
 } 
 

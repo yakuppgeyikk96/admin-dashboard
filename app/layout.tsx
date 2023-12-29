@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import MainLayout from "@/components/layouts/MainLayout";
 import "./globals.css";
-import ThemeProvider from "@/context/ThemeProvider";
 
 const inter = Poppins({
   subsets: ["latin"],
@@ -21,10 +20,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex`}>
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <MainLayout>{children}</MainLayout>
-        </ThemeProvider>
+      <body className={`${inter.className}`}>
+        <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );

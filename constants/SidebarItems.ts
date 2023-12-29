@@ -1,4 +1,4 @@
-import { HomeIcon, Package } from "lucide-react";
+
 import ISidebarItem from "./models/SidebarItem.model";
 
 const sidebarItems: ISidebarItem[] = [
@@ -6,7 +6,7 @@ const sidebarItems: ISidebarItem[] = [
     id: '6ce1718f-d630-49c2-94bf-50a6eb07a08f',
     title: 'Home',
     basepath: '/',
-    icon: "HomeIcon",
+    icon: "Home",
   },
   {
     id: 'd2952489-e679-40ea-aafc-ef6d16ba14e0',
