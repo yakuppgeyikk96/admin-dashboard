@@ -1,8 +1,8 @@
 "use client";
 
 import { DarkMode } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 import { useTheme } from "next-themes";
-import { useDarkMode } from "usehooks-ts";
 
 export default function DarkModeButton() {
   const { setTheme } = useTheme();
@@ -11,5 +11,9 @@ export default function DarkModeButton() {
     setTheme("dark");
   };
 
-  return <DarkMode onClick={switchToDark} />;
+  return (
+    <IconButton>
+      <DarkMode onClick={switchToDark} />
+    </IconButton>
+  );
 }

@@ -1,11 +1,11 @@
 import React from "react";
-import HeaderLayout from "../HeaderLayout";
 import * as Styled from "./MainLayout.styled";
 import SidebarLayout from "../SidebarLayout";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { Box, CssBaseline } from "@mui/material";
 import MuiThemeProviderWrapper from "@/theme/ThemeProviderWrapper";
-import { CssBaseline } from "@mui/material";
 import ThemeContextProvider from "@/context/ThemeContextProvider";
+import HeaderLayout from "../HeaderLayout";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -19,10 +19,10 @@ export default function MainLayout({ children }: MainLayoutProps) {
           <CssBaseline />
           <Styled.MainLayoutContainer>
             <SidebarLayout />
-            <section>
+            <Box component="section" sx={{ flex: 1 }}>
               <HeaderLayout />
               {children}
-            </section>
+            </Box>
           </Styled.MainLayoutContainer>
         </MuiThemeProviderWrapper>
       </AppRouterCacheProvider>
