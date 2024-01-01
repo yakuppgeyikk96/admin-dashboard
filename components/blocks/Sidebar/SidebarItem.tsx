@@ -13,12 +13,14 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SidebarItemWithChildren from "./SidebarItemWithChildren";
+import { useReadLocalStorage } from "usehooks-ts";
 
 interface Props {
   item: ISidebarItem;
 }
 
 export default function SidebarItem({ item }: Props) {
+  const isSidebarOpened = useReadLocalStorage("isSidebarOpened");
   const pathname = usePathname();
 
   const Icon = item.icon && generateIcon(item.icon);
@@ -36,7 +38,11 @@ export default function SidebarItem({ item }: Props) {
       legacyBehavior
     >
       <MenuItem selected={pathnameIncludes}>
-        <ListItemIcon>
+        <ListItemIcon
+          sx={{
+            paddingLeft: isSidebarOpened ? "0" : "0.2rem",
+          }}
+        >
           {Icon ? (
             <Icon
               sx={{
@@ -45,14 +51,16 @@ export default function SidebarItem({ item }: Props) {
             />
           ) : null}
         </ListItemIcon>
-        <ListItemText>
-          <Typography
-            fontWeight={600}
-            color={pathnameIncludes ? "primary.main" : "#606060"}
-          >
-            {item.title}
-          </Typography>
-        </ListItemText>
+        {isSidebarOpened ? (
+          <ListItemText>
+            <Typography
+              fontWeight={600}
+              color={pathnameIncludes ? "primary.main" : "#606060"}
+            >
+              {item.title}
+            </Typography>
+          </ListItemText>
+        ) : null}
       </MenuItem>
     </Link>
   );
