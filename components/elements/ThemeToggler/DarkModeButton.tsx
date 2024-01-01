@@ -12,8 +12,8 @@ export default function DarkModeButton() {
   };
 
   return (
-    <IconButton>
-      <DarkMode onClick={switchToDark} />
+    <IconButton onClick={switchToDark}>
+      <DarkMode />
     </IconButton>
   );
 }

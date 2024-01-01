@@ -40,12 +40,29 @@ export default function SidebarItemWithChildren({ item }: Props) {
         legacyBehavior
       >
         <MenuItem selected={pathnameIncludes}>
-          <ListItemIcon>{Icon ? <Icon /> : null}</ListItemIcon>
+          <ListItemIcon>
+            {Icon ? (
+              <Icon
+                sx={{
+                  color: pathnameIncludes ? "primary.main" : "#606060",
+                }}
+              />
+            ) : null}
+          </ListItemIcon>
           <ListItemText>
-            <Typography fontWeight={600}>{item.title}</Typography>
+            <Typography
+              fontWeight={600}
+              color={pathnameIncludes ? "primary.main" : "#606060"}
+            >
+              {item.title}
+            </Typography>
           </ListItemText>
           <ListItemIcon>
-            {pathnameIncludes ? <ExpandLess /> : <ExpandMore />}
+            {pathnameIncludes ? (
+              <ExpandLess color="primary" />
+            ) : (
+              <ExpandMore sx={{ color: "#606060" }} />
+            )}
           </ListItemIcon>
         </MenuItem>
       </Link>
@@ -60,7 +77,7 @@ export default function SidebarItemWithChildren({ item }: Props) {
                 passHref
                 legacyBehavior
               >
-                <ListItemButton sx={{ pl: 2 }}>
+                <ListItemButton sx={{ pl: 5 }}>
                   <KeyboardArrowRight
                     sx={{
                       visibility: pathname === child.href ? "unset" : "hidden",
@@ -68,7 +85,13 @@ export default function SidebarItemWithChildren({ item }: Props) {
                     color="primary"
                   />
                   <ListItemText>
-                    <Typography fontWeight={600}>{child.title}</Typography>
+                    <Typography
+                      fontWeight={600}
+                      fontSize={15}
+                      color={pathname === child.href ? "primary.main" : ""}
+                    >
+                      {child.title}
+                    </Typography>
                   </ListItemText>
                 </ListItemButton>
               </Link>

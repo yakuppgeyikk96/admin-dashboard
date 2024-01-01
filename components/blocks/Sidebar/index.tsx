@@ -1,15 +1,20 @@
 "use client";
 
 import sidebarItems from "@/constants/SidebarItems";
-import { MenuList } from "@mui/material";
 import SidebarItem from "./SidebarItem";
+import * as Styled from "./Sidebar.styled";
 
 export default function Sidebar() {
   return (
-    <MenuList>
+    <Styled.SidebarContainer
+      sx={{
+        borderRight: 1,
+        borderRightColor: "borderColor.main",
+      }}
+    >
       {sidebarItems.map((item) => {
         return <SidebarItem key={item.id} item={item} />;
       })}
-    </MenuList>
+    </Styled.SidebarContainer>
   );
 }

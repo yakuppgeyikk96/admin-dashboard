@@ -1,6 +1,7 @@
 "use client";
 
 import { LightMode } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 import { useTheme } from "next-themes";
 
 export default function LightModeButton() {
@@ -10,5 +11,9 @@ export default function LightModeButton() {
     setTheme("light");
   };
 
-  return <LightMode onClick={switchToDark} />;
+  return (
+    <IconButton onClick={switchToDark}>
+      <LightMode sx={{ color: "#e9c46a" }} />
+    </IconButton>
+  );
 }

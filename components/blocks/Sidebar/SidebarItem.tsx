@@ -3,23 +3,15 @@
 import ISidebarItem from "@/constants/models/SidebarItem.model";
 import generateIcon from "@/utils/generateIcon";
 import ifPathnameIncludes from "@/utils/ifPathnameIncludes";
-import { ExpandMore } from "@mui/icons-material";
 import {
-  Button,
-  ClickAwayListener,
-  Grow,
   ListItemIcon,
   ListItemText,
   MenuItem,
-  MenuList,
-  Paper,
-  Popper,
   Typography,
 } from "@mui/material";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
 import SidebarItemWithChildren from "./SidebarItemWithChildren";
 
 interface Props {
@@ -31,6 +23,8 @@ export default function SidebarItem({ item }: Props) {
 
   const Icon = item.icon && generateIcon(item.icon);
 
+  const pathnameIncludes = !!ifPathnameIncludes(pathname, item.basepath);
+
   if (item.children && item.children.length) {
     return <SidebarItemWithChildren item={item} />;
   }
@@ -41,10 +35,23 @@ export default function SidebarItem({ item }: Props) {
       passHref
       legacyBehavior
     >
-      <MenuItem selected={!!ifPathnameIncludes(pathname, item.basepath)}>
-        <ListItemIcon>{Icon ? <Icon /> : null}</ListItemIcon>
+      <MenuItem selected={pathnameIncludes}>
+        <ListItemIcon>
+          {Icon ? (
+            <Icon
+              sx={{
+                color: pathnameIncludes ? "primary.main" : "#606060",
+              }}
+            />
+          ) : null}
+        </ListItemIcon>
         <ListItemText>
-          <Typography fontWeight={600}>{item.title}</Typography>
+          <Typography
+            fontWeight={600}
+            color={pathnameIncludes ? "primary.main" : "#606060"}
+          >
+            {item.title}
+          </Typography>
         </ListItemText>
       </MenuItem>
     </Link>
