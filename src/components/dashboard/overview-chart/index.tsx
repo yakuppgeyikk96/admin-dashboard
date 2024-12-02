@@ -10,16 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-
-const data = [
-  { name: "Jan", value: 2400 },
-  { name: "Feb", value: 1398 },
-  { name: "Mar", value: 9800 },
-  { name: "Apr", value: 3908 },
-  { name: "May", value: 4800 },
-  { name: "Jun", value: 3800 },
-  { name: "Jul", value: 4300 },
-];
+import { OVERVIEW_CHART_DATA } from "./constants";
 
 export const OverviewChart = () => {
   return (
@@ -31,7 +22,7 @@ export const OverviewChart = () => {
         <div className="h-[400px] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
-              data={data}
+              data={OVERVIEW_CHART_DATA}
               margin={{
                 top: 20,
                 right: 30,

@@ -7,21 +7,22 @@ export const StatsGrid = () => {
   const stats = [
     {
       title: "Total Users",
-      value: 2850, // string yerine number kullanıyoruz
+      value: 2850,
       description: "Active Users",
       trend: { value: 12, isPositive: true },
       icon: Users,
     },
     {
       title: "Total Revenue",
-      value: "$45,231",
+      value: 45231,
       description: "Last 30 days",
       trend: { value: 8, isPositive: true },
       icon: DollarSign,
+      isCurrency: true,
     },
     {
       title: "Active Orders",
-      value: 126, // string yerine number kullanıyoruz
+      value: 126,
       description: "Processing Orders",
       trend: { value: 3, isPositive: false },
       icon: ShoppingCart,

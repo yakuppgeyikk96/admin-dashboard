@@ -14,6 +14,7 @@ interface StatCardProps {
     isPositive: boolean;
   };
   icon: LucideIcon;
+  isCurrency?: boolean;
 }
 
 export const StatCard = ({
@@ -22,14 +23,13 @@ export const StatCard = ({
   description,
   trend,
   icon: Icon,
+  isCurrency,
 }: StatCardProps) => {
-  // Sayının number olup olmadığını kontrol et
   const isNumeric =
     typeof value === "number" || !isNaN(parseFloat(value.toString()));
   const numericValue = isNumeric
     ? parseFloat(value.toString().replace(/[^0-9.-]+/g, ""))
     : 0;
-  const prefix = value.toString().match(/[^0-9.-]+/)?.[0] || "";
 
   return (
     <Card className="animate-in fade-in-50 slide-in-from-bottom-6 duration-500">
@@ -41,7 +41,7 @@ export const StatCard = ({
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">
-          {prefix}
+          {isCurrency && "$"}
           {isNumeric ? <Counter value={numericValue} /> : value}
         </div>
         {(description || trend) && (

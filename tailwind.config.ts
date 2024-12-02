@@ -10,6 +10,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      height: {
+        "192": "48rem",
+        "196": "49rem",
+        "200": "50rem",
+      },
+      maxHeight: {
+        "192": "48rem",
+        "196": "49rem",
+        "200": "50rem",
+      },
       colors: {
         accent: {
           orange: "hsl(var(--accent-orange))",

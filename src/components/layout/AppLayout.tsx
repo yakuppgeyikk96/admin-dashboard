@@ -25,7 +25,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <Sidebar />
       <div className="flex flex-col flex-1 bg-background text-foreground">
         <Navbar />
-        <main className="flex-1 p-4">{children}</main>
+        <main className="flex-1 overflow-y-auto">{children}</main>
       </div>
     </div>
   );
