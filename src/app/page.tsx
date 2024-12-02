@@ -1,4 +1,5 @@
 import { RecentActivities } from "@/components/dashboard/activities/recent-activites";
+import { LatestUsers } from "@/components/dashboard/latest-users";
 import { OverviewChart } from "@/components/dashboard/overview-chart";
 import { QuickActions } from "@/components/dashboard/quick-actions";
 import { StatsGrid } from "@/components/dashboard/stats/StatsGrid";
@@ -13,14 +14,17 @@ export default function DashboardPage() {
     >
       <div className="space-y-6">
         <StatsGrid />
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="flex flex-col justify-between gap-4">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="flex flex-col justify-between space-y-6">
             <QuickActions />
             <OverviewChart />
           </div>
           <UpcomingEvents />
         </div>
-        <RecentActivities />
+        <div className="grid gap-6 md:grid-cols-2">
+          <RecentActivities />
+          <LatestUsers />
+        </div>
       </div>
     </PageLayout>
   );

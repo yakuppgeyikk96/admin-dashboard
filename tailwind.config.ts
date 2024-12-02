@@ -24,6 +24,7 @@ const config: Config = {
         accent: {
           orange: "hsl(var(--accent-orange))",
           "orange-light": "hsl(var(--accent-orange-light))",
+          "orange-hover": "hsl(var(--accent-orange-hover))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar))",
@@ -61,6 +62,12 @@ const config: Config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      backgroundColor: {
+        create: {
+          DEFAULT: "hsl(var(--create-btn))",
+          hover: "hsl(var(--create-btn-hover))",
         },
       },
       borderRadius: {

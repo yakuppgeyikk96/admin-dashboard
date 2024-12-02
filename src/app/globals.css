@@ -15,10 +15,14 @@
     --sidebar-active-border: 210 40% 98%;
 
     --accent-orange: 28 96% 64%;
+    --accent-orange-hover: 28 96% 60%;
     --accent-orange-light: 28 100% 97%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
+
+    --create-btn: 215 25% 12%;
+    --create-btn-hover: 215 25% 17%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
@@ -57,9 +61,13 @@
     --sidebar-active-border: 210 40% 98%;
 
     --accent-orange: 25 95% 53%;
+    --accent-orange-hover: 28 96% 60%;
 
     --card: 215 25% 12%;
     --card-foreground: 210 40% 98%;
+
+    --create-btn: 215 25% 12%;
+    --create-btn-hover: 215 25% 17%;
 
     --popover: 215 25% 12%; /* Sidebar ile aynı renk */
     --popover-foreground: 210 40% 98%;
@@ -91,5 +99,23 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .no-focus {
+    @apply focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:border-input !important;
+  }
+
+  .select-content {
+    @apply p-0;
+  }
+
+  .select-item {
+    @apply relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none hover:bg-muted data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
+  }
+
+  .input:focus {
+    @apply outline-none ring-0 ring-offset-0;
   }
 }

@@ -1,4 +1,3 @@
-// src/components/dashboard/upcoming-events/index.tsx
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { UPCOMING_EVENTS } from "./constants";
 import { EventItem } from "./event-item";
