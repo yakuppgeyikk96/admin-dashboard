@@ -2,10 +2,11 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { UserFilters } from "./user-filters";
-import { UserTable } from "./user-table";
 import type { User, UserFiltersState } from "./types";
-import { USER_LIST } from "./constants";
+import { USER_LIST, USER_TABLE_COLUMNS } from "./constants";
 import { CreateUserModal } from "./create-user-modal";
+import { DataTable } from "@/components/common/data-table";
+import { UserActions } from "./user-actions";
 
 export default function UserListPage() {
   const [filters, setFilters] = useState<UserFiltersState>({
@@ -16,6 +17,36 @@ export default function UserListPage() {
     endDate: "",
   });
   const [users, setUsers] = useState<User[]>([]);
+
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 10,
+    total: 20,
+  });
+
+  const handlePageChange = (newPage: number) => {
+    setPagination((prev) => ({
+      ...prev,
+      pageIndex: newPage,
+    }));
+  };
+
+  // Event handlers
+  const handleEdit = (user: User) => {
+    console.log("Edit user:", user);
+    // Edit modal'ı açılacak veya edit sayfasına yönlendirilecek
+  };
+
+  const handleDelete = async (user: User) => {
+    try {
+      // API call ile silme işlemi
+      console.log("Delete user:", user);
+      // Başarılı silme sonrası kullanıcı listesi güncellenecek
+    } catch (error) {
+      // Hata yönetimi
+      console.error("Error deleting user:", error);
+    }
+  };
 
   const filteredUsers = useMemo(() => {
     return users.filter((user) => {
@@ -58,9 +89,23 @@ export default function UserListPage() {
         <div className="flex justify-end">
           <CreateUserModal />
         </div>
-        <div className="border rounded-lg">
-          <UserTable users={filteredUsers} />
-        </div>
+        <DataTable
+          data={filteredUsers}
+          columns={USER_TABLE_COLUMNS}
+          pagination={{
+            pageSize: pagination.pageSize,
+            pageIndex: pagination.pageIndex,
+            total: pagination.total,
+            onPageChange: handlePageChange,
+          }}
+          actions={(row) => (
+            <UserActions
+              user={row}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
+          )}
+        />
       </div>
     </>
   );

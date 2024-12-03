@@ -15,3 +15,15 @@ export interface UserFiltersState {
   startDate: string;
   endDate: string;
 }
+
+interface PaginationState {
+  pageSize: number;
+  pageIndex: number;
+  total: number;
+}
+
+export interface UserTableProps {
+  users: User[];
+  pagination: PaginationState;
+  onPaginationChange: (page: number) => void;
+}

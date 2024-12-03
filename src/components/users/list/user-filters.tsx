@@ -111,22 +111,22 @@ export function UserFilters({
           <div className="sm:col-span-2 lg:col-span-1">
             <Input
               type="date"
+              placeholder="Start date"
               value={filters.startDate}
               onChange={(e) =>
                 handleFilterChange({ startDate: e.target.value })
               }
-              className="w-full no-focus [&:not(:focus)]:border-input mb-4 sm:mb-0"
-              placeholder="Start date"
+              className="w-full no-focus [&:not(:focus)]:border-input [&::-webkit-calendar-picker-indicator]:text-foreground [&::-webkit-calendar-picker-indicator]:dark:invert"
             />
           </div>
 
           <div className="sm:col-span-2 lg:col-span-1">
             <Input
               type="date"
+              placeholder="Endt date"
               value={filters.endDate}
               onChange={(e) => handleFilterChange({ endDate: e.target.value })}
-              className="w-full no-focus [&:not(:focus)]:border-input"
-              placeholder="End date"
+              className="w-full no-focus [&:not(:focus)]:border-input [&::-webkit-calendar-picker-indicator]:text-foreground [&::-webkit-calendar-picker-indicator]:dark:invert"
             />
           </div>
 

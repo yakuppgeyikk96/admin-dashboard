@@ -1,3 +1,4 @@
+import { Column } from "@/types/table";
 import { User } from "./types";
 
 export const USER_ROLES = [
@@ -38,5 +39,44 @@ export const USER_LIST: User[] = [
     status: "active",
     createdAt: "2024-02-15",
     lastLogin: "2024-02-28",
+  },
+];
+
+export const USER_TABLE_COLUMNS: Column<User>[] = [
+  {
+    id: "name",
+    header: "Name",
+    accessorKey: "name",
+    type: "text",
+  },
+  {
+    id: "email",
+    header: "Email",
+    accessorKey: "email",
+    type: "text",
+  },
+  {
+    id: "role",
+    header: "Role",
+    accessorKey: "role",
+    type: "badge",
+  },
+  {
+    id: "status",
+    header: "Status",
+    accessorKey: "status",
+    type: "badgeStatus",
+  },
+  {
+    id: "createdAt",
+    header: "Created At",
+    accessorKey: "createdAt",
+    type: "date",
+  },
+  {
+    id: "lastLogin",
+    header: "Last Login",
+    accessorKey: "lastLogin",
+    type: "date",
   },
 ];

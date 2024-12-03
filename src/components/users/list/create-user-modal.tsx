@@ -1,6 +1,6 @@
-// create-user-modal.tsx
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
   DialogContent,
@@ -27,6 +27,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { USER_ROLES } from "./constants";
+import { createUserSchema } from "@/schemas/user";
 
 interface CreateUserFormData {
   name: string;
@@ -38,10 +39,11 @@ export function CreateUserModal() {
   const [open, setOpen] = useState(false);
 
   const form = useForm<CreateUserFormData>({
+    resolver: zodResolver(createUserSchema),
     defaultValues: {
       name: "",
       email: "",
-      role: "",
+      role: undefined,
     },
   });
 
