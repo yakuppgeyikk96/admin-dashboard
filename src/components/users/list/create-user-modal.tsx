@@ -1,6 +1,6 @@
+// create-user-modal.tsx
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Dialog,
   DialogContent,
@@ -27,7 +27,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { USER_ROLES } from "./constants";
-import { createUserSchema } from "@/schemas/user";
 
 interface CreateUserFormData {
   name: string;
@@ -39,11 +38,10 @@ export function CreateUserModal() {
   const [open, setOpen] = useState(false);
 
   const form = useForm<CreateUserFormData>({
-    resolver: zodResolver(createUserSchema),
     defaultValues: {
       name: "",
       email: "",
-      role: undefined,
+      role: "",
     },
   });
 
@@ -73,7 +71,11 @@ export function CreateUserModal() {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="John Doe" {...field} />
+                    <Input
+                      placeholder="John Doe"
+                      {...field}
+                      className="no-focus [&:not(:focus)]:border-input"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -91,6 +93,7 @@ export function CreateUserModal() {
                       type="email"
                       placeholder="john@example.com"
                       {...field}
+                      className="no-focus [&:not(:focus)]:border-input"
                     />
                   </FormControl>
                   <FormMessage />
@@ -109,13 +112,17 @@ export function CreateUserModal() {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="no-focus [&:not(:focus)]:border-input">
                         <SelectValue placeholder="Select a role" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className="select-content">
                       {USER_ROLES.map((role) => (
-                        <SelectItem key={role.value} value={role.value}>
+                        <SelectItem
+                          key={role.value}
+                          value={role.value}
+                          className="select-item"
+                        >
                           {role.label}
                         </SelectItem>
                       ))}
@@ -131,10 +138,11 @@ export function CreateUserModal() {
                 variant="outline"
                 type="button"
                 onClick={() => setOpen(false)}
+                className="no-focus [&:not(:focus)]:border-input"
               >
                 Cancel
               </Button>
-              <Button type="submit" variant="success">
+              <Button type="submit" className="no-focus" variant="success">
                 Create
               </Button>
             </div>

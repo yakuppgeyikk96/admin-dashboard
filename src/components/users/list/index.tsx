@@ -7,6 +7,7 @@ import { USER_LIST, USER_TABLE_COLUMNS } from "./constants";
 import { CreateUserModal } from "./create-user-modal";
 import { DataTable } from "@/components/common/data-table";
 import { UserActions } from "./user-actions";
+import { UserStats } from "../stats";
 
 export default function UserListPage() {
   const [filters, setFilters] = useState<UserFiltersState>({
@@ -83,29 +84,34 @@ export default function UserListPage() {
 
   return (
     <>
-      <UserFilters onFilterChange={setFilters} />
+      <div className="flex flex-col gap-6">
+        <UserStats />
+        <div className="flex flex-col gap-8">
+          <UserFilters onFilterChange={setFilters} />
 
-      <div className="flex flex-col gap-2">
-        <div className="flex justify-end">
-          <CreateUserModal />
-        </div>
-        <DataTable
-          data={filteredUsers}
-          columns={USER_TABLE_COLUMNS}
-          pagination={{
-            pageSize: pagination.pageSize,
-            pageIndex: pagination.pageIndex,
-            total: pagination.total,
-            onPageChange: handlePageChange,
-          }}
-          actions={(row) => (
-            <UserActions
-              user={row}
-              onEdit={handleEdit}
-              onDelete={handleDelete}
+          <div className="flex flex-col gap-2">
+            <div className="flex justify-end">
+              <CreateUserModal />
+            </div>
+            <DataTable
+              data={filteredUsers}
+              columns={USER_TABLE_COLUMNS}
+              pagination={{
+                pageSize: pagination.pageSize,
+                pageIndex: pagination.pageIndex,
+                total: pagination.total,
+                onPageChange: handlePageChange,
+              }}
+              actions={(row) => (
+                <UserActions
+                  user={row}
+                  onEdit={handleEdit}
+                  onDelete={handleDelete}
+                />
+              )}
             />
-          )}
-        />
+          </div>
+        </div>
       </div>
     </>
   );

@@ -25,15 +25,15 @@ export function UserActions({ user, onEdit, onDelete }: UserActionsProps) {
           <MoreVerticalIcon className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => onEdit(user)}>
+      <DropdownMenuContent align="end" className="select-content">
+        <DropdownMenuItem onClick={() => onEdit(user)} className="select-item">
           <Edit className="mr-2 h-4 w-4" />
           Edit
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => onDelete(user)}
-          className="text-destructive focus:text-destructive"
+          className="select-item text-destructive focus:text-destructive"
         >
           <Trash className="mr-2 h-4 w-4" />
           Delete

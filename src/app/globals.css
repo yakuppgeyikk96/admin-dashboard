@@ -104,7 +104,7 @@
 
 @layer components {
   .no-focus {
-    @apply focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:border-input !important;
+    @apply focus:outline-none focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:border-orange-500/60 !important;
   }
 
   .select-content {
@@ -112,10 +112,21 @@
   }
 
   .select-item {
-    @apply relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none hover:bg-muted data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
+    @apply relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none hover:bg-orange-500/10 data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
   }
 
   .input:focus {
     @apply outline-none ring-0 ring-offset-0;
+  }
+
+  .sidebar-gradient {
+    @apply bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))];
+    @apply from-zinc-800/50 via-zinc-900 to-zinc-900;
+    @apply backdrop-blur-sm;
+    /* Subtle border line */
+    @apply border-r border-white/[0.03];
+    /* Glass effect için box-shadow */
+    box-shadow: inset -1px 0 0 0 rgba(255, 255, 255, 0.05),
+      -5px 0 30px -15px rgba(253, 140, 63, 0.1);
   }
 }

@@ -1,3 +1,4 @@
+// components/common/data-table/index.tsx
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -56,6 +57,16 @@ export function DataTable<T extends { id: string }>({
     }
   };
 
+  const paginationEnabled =
+    pagination &&
+    typeof pagination.pageSize === "number" &&
+    typeof pagination.pageIndex === "number" &&
+    typeof pagination.total === "number";
+
+  const totalPages = paginationEnabled
+    ? Math.ceil(pagination.total / pagination.pageSize)
+    : 0;
+
   return (
     <>
       <div className="border rounded-lg">
@@ -93,7 +104,7 @@ export function DataTable<T extends { id: string }>({
         </Table>
       </div>
 
-      {pagination && (
+      {paginationEnabled && (
         <div className="flex items-center justify-between pt-4">
           <p className="text-sm text-muted-foreground">
             Showing {pagination.pageIndex * pagination.pageSize + 1} -{" "}
@@ -110,7 +121,7 @@ export function DataTable<T extends { id: string }>({
                   variant="outline"
                   size="icon"
                   onClick={() =>
-                    pagination.onPageChange(pagination.pageIndex - 1)
+                    pagination.onPageChange?.(pagination.pageIndex - 1)
                   }
                   disabled={pagination.pageIndex === 0}
                   className="h-8 w-8"
@@ -119,17 +130,19 @@ export function DataTable<T extends { id: string }>({
                 </Button>
               </PaginationItem>
 
-              {[
-                ...Array(Math.ceil(pagination.total / pagination.pageSize)),
-              ].map((_, idx) => (
+              {[...Array(totalPages)].map((_, idx) => (
                 <PaginationItem key={idx}>
                   <Button
                     variant={
                       pagination.pageIndex === idx ? "default" : "outline"
                     }
                     size="icon"
-                    onClick={() => pagination.onPageChange(idx)}
-                    className="h-8 w-8"
+                    onClick={() => pagination.onPageChange?.(idx)}
+                    className={cn(
+                      "h-8 w-8",
+                      pagination.pageIndex === idx &&
+                        "bg-orange-500 hover:bg-orange-600 text-white"
+                    )}
                   >
                     {idx + 1}
                   </Button>
@@ -141,12 +154,9 @@ export function DataTable<T extends { id: string }>({
                   variant="outline"
                   size="icon"
                   onClick={() =>
-                    pagination.onPageChange(pagination.pageIndex + 1)
+                    pagination.onPageChange?.(pagination.pageIndex + 1)
                   }
-                  disabled={
-                    pagination.pageIndex ===
-                    Math.ceil(pagination.total / pagination.pageSize) - 1
-                  }
+                  disabled={pagination.pageIndex === totalPages - 1}
                   className="h-8 w-8"
                 >
                   <ChevronRight className="h-4 w-4" />

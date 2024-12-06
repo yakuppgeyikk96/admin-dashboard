@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import type { UserFiltersState } from "./types";
 import { USER_ROLES, USER_STATUS } from "./constants";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export function UserFilters({
   onFilterChange,
@@ -46,9 +46,7 @@ export function UserFilters({
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Filters</CardTitle>
-      </CardHeader>
+      <CardHeader></CardHeader>
       <CardContent>
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 items-start">
           <div className="sm:col-span-2 lg:col-span-2">
